@@ -1,8 +1,6 @@
 import { Sequelize,Options } from "sequelize";
 import dotenv from "dotenv";
 
-
-
 dotenv.config();
 
 const options:Options = {
