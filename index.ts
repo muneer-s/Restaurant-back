@@ -10,12 +10,12 @@ dotenv.config();
 // connectDB();
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3004;
 
-const corsOptions = {
-    origin: process.env.FRONTEND, 
-    methods: "GET,POST,PUT,DELETE",
-};
+// const corsOptions = {
+//     origin: process.env.FRONTEND, 
+//     methods: "GET,POST,PUT,DELETE",
+// };
 
 app.use(cors());
 app.use(express.json());
@@ -29,3 +29,28 @@ sequelize.authenticate().then(async()=>{
 
 app.use("/api", itemRoute);
 
+app.use((err:any, req:any, res:any, next:any) => {
+    console.error(err.stack);
+    res.status(500).json({ message: 'Something went wrong!' });
+  });
+
+  const startServer = async () => {
+    try {
+      await sequelize.authenticate();
+      console.log('Database connected successfully');
+      
+      // Only sync in development
+      if (process.env.NODE_ENV !== 'production') {
+        await sequelize.sync({ alter: true });
+      }
+      
+      app.listen(PORT, () => {
+        console.log(`Server running on port ${PORT}`);
+      });
+    } catch (error) {
+      console.error('Unable to connect to the database:', error);
+      process.exit(1);
+    }
+  };
+  
+  startServer();

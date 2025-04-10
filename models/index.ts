@@ -3,6 +3,11 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
+const env = process.env.NODE_ENV || 'development';
+const config = require('../config/database')[env];
+
+
+/*
 const options:Options = {
     username:process.env.DB_USER,
     password:process.env.DB_PASSWORD,
@@ -14,7 +19,20 @@ const options:Options = {
     sync:{alter:true,logging:true},  // ith production timil maattum 
     logging:true
 }
+    */
 
-const sequelize = new Sequelize(options)
+// const sequelize = new Sequelize(options)
+
+const sequelize = new Sequelize(
+    config.database,
+    config.username,
+    config.password,
+    {
+      host: config.host,
+      port: config.port,
+      dialect: config.dialect,
+      logging: config.logging
+    }
+  );
 
 export default sequelize
