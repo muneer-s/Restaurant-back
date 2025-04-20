@@ -1,4 +1,4 @@
-import { Sequelize,Options } from "sequelize";
+import { Sequelize, Options } from "sequelize";
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -24,15 +24,17 @@ const options:Options = {
 // const sequelize = new Sequelize(options)
 
 const sequelize = new Sequelize(
-    config.database,
-    config.username,
-    config.password,
-    {
-      host: config.host,
-      port: config.port,
-      dialect: config.dialect,
-      logging: config.logging
-    }
-  );
+  config.database,
+  config.username,
+  config.password,
+  {
+    host: config.host,
+    port: config.port,
+    dialect: config.dialect,
+    logging: config.logging,
+    dialectOptions: config.dialectOptions, // ✅ Pass dialectOptions from config
+    ssl: config.ssl
+  }
+);
 
 export default sequelize

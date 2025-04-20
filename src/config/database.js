@@ -6,9 +6,10 @@ const commonSSL = {
   dialectOptions: {
     ssl: {
       require: true,
-      rejectUnauthorized: false // This allows self-signed certs
+      rejectUnauthorized: false
     }
-  }
+  },
+  ssl: true 
 };
 
 module.exports = {
