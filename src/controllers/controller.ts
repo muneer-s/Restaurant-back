@@ -19,8 +19,7 @@ export const getItem = async (req: Request, res: Response) => {
     const item = await Restaurant.findOne({
       where: { id },
     });
-    console.log(55,item)
-
+    
     if (!item) {
       res.status(404).json({ message: "Restaurant not found" });
       return
