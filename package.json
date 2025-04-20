@@ -5,10 +5,12 @@
   "scripts": {
     "migrate": "dotenv -c .env npx sequelize-cli db:migrate",
     "migrate:undo": "dotenv -c .env npx sequelize-cli db:migrate:undo",
-    "dev": "tsnd --respawn src/index.ts",
     "build": "tsc",
-    "start": "node index.js"
+    "start": "node dist/index.js",
+    "dev": "tsc && node dist/index.js --respawn"
   },
+ 
+
   "keywords": [],
   "author": "",
   "license": "ISC",
