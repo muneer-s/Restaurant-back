@@ -16,7 +16,7 @@ const options:Options = {
     port: Number(process.env.DB_PORT),
     dialect:"postgres",
     host:process.env.DB_HOST,
-    sync:{alter:true,logging:true},  // ith production timil maattum 
+    sync:{alter:true,logging:true},  // this change in the time of prodcuction
     logging:true
 }
     */
@@ -32,7 +32,7 @@ const sequelize = new Sequelize(
     port: config.port,
     dialect: config.dialect,
     logging: config.logging,
-    dialectOptions: config.dialectOptions, // ✅ Pass dialectOptions from config
+    dialectOptions: config.dialectOptions, // Pass dialectOptions from config
     ssl: config.ssl
   }
 );

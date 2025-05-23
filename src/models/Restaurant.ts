@@ -1,4 +1,4 @@
-import {DataTypes,Model} from 'sequelize'
+import {DataTypes,Model } from 'sequelize'
 import sequelize from './index'
 
 export interface restaurantAttributes{
@@ -37,6 +37,6 @@ Restaurant.init({
 },{
     timestamps:true,
     sequelize:sequelize,
-    paranoid:true  // soft delete cheyyan 
+    paranoid:true  // used for soft delete 
 })
 
